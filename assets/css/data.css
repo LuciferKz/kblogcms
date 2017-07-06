@@ -1,0 +1,416 @@
+.status{
+    width:10px;
+    height:10px;
+    background:#63d5c3;
+    border-radius: 10px;
+    display: block;    
+    margin:auto;
+    margin-top:5px;
+}
+.status_no{
+    background:red !important;    
+}
+.modal-dialog {
+    margin: 30px auto;
+  /*  width: 600px;*/
+    max-height:500px;
+    overflow-y: auto;
+}
+.commission_rate{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.commission_rate_left{
+    float:left;    
+}
+.commission_rate_left del{
+/*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.commission_rate_left p{
+/*    float:left;*/
+    margin-top:10px;
+}
+.commission_rate_right{
+    float:right;
+}
+.office_spaces{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.office_spaces_left{
+    float:left;        
+}
+.office_spaces_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.office_spaces_left p{
+    float:left;
+    margin-top:10px;
+}
+.office_spaces_right{
+    float:right;
+}
+.house_type{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.house_type_left{
+    float:left;    
+}
+.house_type_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.house_type_left p{
+    float:left;
+    margin-top:10px;
+}
+.house_type_right{
+    float:right;
+}
+.picture{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.picture_left_left{
+    float:left;
+    margin-top:10px;
+    margin-right:20px;
+}
+.picture_left_right{
+    float:left;
+}
+.picture_left_right_warper{
+    float:left;
+    margin-right:20px;
+}
+.picture_left_right_warper img{
+    display: block;
+    width:80px;
+    height:80px;
+    margin-top:10px;
+}
+.circles_wai {
+    width:16px;
+    height:16px;
+    position: relative;
+    border:1px solid #c5c5c5;
+    border-radius: 10px;
+    float:left;
+    margin-top:10px;
+    margin-right:10px;
+    margin-left:10px;
+    cursor: pointer;
+}
+.circles_nei{
+    width:8px;
+    height:8px;
+    position: absolute;
+    margin:auto;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    background:#63d5c3;
+    border-radius: 8px;
+    border:1px solid #63d5c3;
+    display:none;
+}
+.circles_wai_selected .circles_nei{
+    display: block !important;
+}
+.picture_left_right_warper span{
+    float:left;   
+    margin-top:10px;
+}
+.lease_term_left{
+    float:left;    
+}
+.lease_term_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.lease_term_left p{
+    float:left;
+    margin-top:10px;
+}
+.lease_term_right{
+    float:right;
+}
+tbody tr{
+    cursor: pointer;
+}
+table.dataTable thead .sorting_asc::after{
+    content: "" !important;
+}
+table.dataTable thead .sorting::after{
+    content: "" !important;
+}
+.table.dataTable thead .sorting_desc::after{
+    content: "" !important;
+}
+#myModal{
+    overflow-y: auto;    
+}
+#example2{
+    text-align: center;
+}
+th{
+    text-align: center !important;
+}
+.pagination{
+    float:right;
+    margin-right:10px;
+    margin-bottom: 0px;
+}
+.pagination li,.pagination li a{
+    cursor:pointer !important;
+}
+#myModal{
+    bottom: 0;
+    display: none;
+    left: 0;
+    outline: 0 none;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.5) ;
+}
+.modal-footer{
+    background:#fff;
+}
+.floor_infor{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.floor_infor_left{
+    float:left;    
+}
+.floor_infor_left del{
+    /*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.floor_infor_left p{
+    float:left;
+    margin-top:10px;
+}
+.floor_infor_right{
+    float:right;
+}
+.contacts{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.contacts_left{
+    float:left;    
+}
+.contacts_left del{
+    /*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.contacts_left p{
+    float:left;
+    margin-top:10px;
+}
+.contacts_right{
+    float:right;
+}
+.contact_number{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.contact_number_left{
+    float:left;    
+}
+.contact_number_left del{
+/*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.contact_number_left p{
+    float:left;
+    margin-top:10px;
+}
+.contact_number_right{
+    float:right;
+}
+.other_contact{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.other_contact_left{
+    float:left;    
+}
+.other_contact_left del{
+/*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.other_contact_left p{
+    float:left;
+    margin-top:10px;
+}
+.other_contact_right{
+    float:right;
+}
+.remarks{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.remarks_left{
+    float:left;    
+}
+.remarks_left del{
+/*    float:left;*/
+    margin-right:10px;
+    margin-top:10px;
+}
+.remarks_left p{
+    float:left;
+    margin-top:10px;
+}
+.remarks_right{
+    float:right;
+}
+.preferential_information{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.preferential_information_left{
+    float:left;    
+}
+.preferential_information_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.preferential_information_left p{
+    float:left;
+    margin-top:10px;
+}
+.preferential_information_right{
+    float:right;
+}
+
+
+.low_price{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.low_price_left{
+    float:left;    
+}
+.low_price_left del{  
+    margin-right:10px;
+    margin-top:10px;
+    float:left;
+}
+.low_price_left p{
+    float:left;
+    margin-top:10px;
+}
+.low_price_right{
+    float:right;
+}
+
+
+.standard_number{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.standard_number_left{
+    float:left;    
+}
+.standard_number_left del{  
+    margin-right:10px;
+    margin-top:10px;
+    float:left;
+}
+.standard_number_left p{
+    float:left;
+    margin-top:10px;
+}
+.standard_number_right{
+    float:right;
+}
+.minimum_rent{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.minimum_rent_left{
+    float:left;    
+}
+.minimum_rent_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.minimum_rent_left p{
+    float:left;
+    margin-top:10px;
+}
+.minimum_rent_right{
+    float:right;
+}
+.housing_details{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.housing_details_left{
+    float:left;    
+}
+.housing_details_left del{
+    float:left;
+    margin-right:10px;
+    margin-top:10px;
+}
+.housing_details_left p{
+    float:left;
+    margin-top:10px;
+}
+.housing_details_right{
+    float:right;
+}
+.comment{
+    border-bottom: 1px dashed #f4f4f4;
+}
+.comment_left{
+    float:left;    
+}
+.comment_left i{
+    float:left;
+}
+.comment_left del{
+    float:left;
+    margin-right:10px;
+/*    margin-top:10px;*/
+}
+.comment_left p{
+    float:left;
+    margin-top:10px;
+}
+.comment_right{
+    float:right;
+}
+.office_number{
+    border-top:1px solid #ccc;
+}
+
+.icheckbox_square-blue{
+    margin-top:10px;
+   cursor: pointer;
+}
+.icheckbox_square-blue img{
+    float:left;
+}
+.icheckbox_square-blue span{
+    float:left;
+}
+.icheckbox_square-blue  .wei_choose{
+    display: block;    
+}
+.icheckbox_square-blue  .choose{
+    display: none;    
+}
+.checked  .wei_choose{
+    display: none;    
+}
+.checked  .choose{
+    display: block;    
+}
