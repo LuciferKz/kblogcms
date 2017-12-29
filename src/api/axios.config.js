@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let AUTH_TOKEN = window.localStorage.getItem('token') || window.sessionStorage.getItem('token') || ''
 
-axios.defaults.baseURL = 'http://localhost:3705/'
+axios.defaults.baseURL = 'http://zhangzhenkai:3705/'
 
 axios.defaults.timeout = 3000
 
