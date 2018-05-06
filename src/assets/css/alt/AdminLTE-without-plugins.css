@@ -2,7 +2,7 @@
 /*!
  *   AdminLTE v2.3.5 Without Third-Party Plugins
  *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   Website: Almsaeed Studio <http://almsaeedstudio.com>
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
@@ -559,7 +559,6 @@ a:focus {
   display: block;
 }
 .sidebar-menu .treeview-menu {
-  display: none;
   list-style: none;
   padding: 0;
   margin: 0;

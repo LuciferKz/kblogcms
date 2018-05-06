@@ -14,11 +14,11 @@
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
-    <ul class="treeview-menu" ref="subMenu" :style="{ display: displayMenu }">
+    <ul class="treeview-menu" ref="subMenu">
       <TreeMenu
         v-for = "model in menuModel.children"
         :menuModel = "model"
-        key = "model.id"
+        :key = "model.id"
       />
     </ul>
   </li>
@@ -49,26 +49,14 @@ export default {
     }
   },
 
+  mounted () {
+    this.menuHeight = this.$refs.subMenu.scrollHeight + 'px'
+  },
+
   methods: {
     toggle () {
-      if (this.open) {
-        this.open = false
-        new Promise((resolve, reject) => {
-          this.$refs.subMenu.style.height = '0px'
-          resolve()
-        }).then(() => {
-          this.displayMenu = 'block'
-        })
-      } else {
-        this.open = true
-        new Promise((resolve, reject) => {
-          this.displayMenu = 'block'
-          this.$refs.subMenu.style.height = '0px'
-          resolve()
-        }).then(() => {
-          this.$refs.subMenu.style.height = this.$refs.subMenu.scrollHeight + 'px'
-        })
-      }
+      this.open = !this.open
+      this.$refs.subMenu.style.height = this.open ? this.menuHeight : '0px'
     }
   }
 }
@@ -76,11 +64,15 @@ export default {
 
 <style lang="css" scoped>
   .menu-open .treeview-menu{
-
   }
   .sidebar-mini .sidebar-menu .treeview .treeview-menu{
 
   }
+  .sidebar-menu .treeview .treeview-menu{
+    display: block;
+    height: 0;
+  }
+
   .sidebar-menu .treeview .treeview-menu{
     overflow: hidden;
     padding: 0!important;

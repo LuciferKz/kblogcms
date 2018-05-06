@@ -22,9 +22,9 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <TreeMenu
-          v-for = "model in sidebarMenu"
+          v-for = "(model, index) in sidebarMenu"
           :menuModel = "model"
-          key = "model.id"
+          :key = "index"
         />
         <li><a href="https://adminlte.io/themes/AdminLTE/documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <!-- <li class="header">LABELS</li>
