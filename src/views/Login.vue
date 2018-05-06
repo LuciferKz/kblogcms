@@ -32,7 +32,7 @@
                     <button type="button" @click="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
                 </div>
             </div>
-            <a href="#">I forgot my password</a><br>
+            <!-- <a href="#">I forgot my password</a><br> -->
             <router-link :to="{name:'Register'}" class="text-center">Register a new membership</router-link>
         </div>
     </div>
