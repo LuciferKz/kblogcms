@@ -36,3 +36,7 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+// "karma-phantomjs-launcher": "^1.0.2",
+// "karma-phantomjs-shim": "^1.4.0",
+// "phantomjs-prebuilt": "^2.1.14",
