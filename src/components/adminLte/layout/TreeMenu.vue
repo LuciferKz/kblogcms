@@ -38,7 +38,7 @@ export default {
   },
 
   created () {
-    this.open = this.sidebarModel === 'mini'
+    this.sidebarModel === 'mini'
   },
 
   data () {
