@@ -9,7 +9,7 @@
         type = "text"
         placeholder = "User name"
         labelText = "User name"
-        v-model = "username"
+        v-model = "userData.username"
         disabled
       />
       <KelInput
@@ -17,21 +17,21 @@
         type = "tel"
         placeholder = "Phone"
         labelText = "Phone"
-        v-model = "phone"
+        v-model = "userData.phone"
       />
       <KelInput
         id = "userEditEmail"
         type = "email"
         placeholder = "Email"
         labelText = "Email"
-        v-model = "email"
+        v-model = "userData.email"
       />
       <KelInput
         id = "userEditPhoto"
         type = "text"
         placeholder = "User Photo"
         labelText = "User Photo"
-        v-model = "photo"
+        v-model = "userData.photo"
         helpText = "只支持使用图片绝对地址，http:// or https://"
       />
     </div>
@@ -49,31 +49,37 @@ export default {
   created: function () {
     this.$api.user.fetchUserData(this.$route.params.uid, (res) => {
       if (res.statusCode === 20000) {
-        console.log(res.userData)
         let userData = res.userData
-        this.username = userData.username
-        this.phone = userData.phone.toString()
-        this.photo = userData.photo
-        this.email = userData.email
+        userData.phone = userData.phone && userData.phone.toString()
+        this.userData = userData
+        console.log(this.userData)
+
+        // this.username = userData.username
+        // this.phone = userData.phone.toString()
+        // this.photo = userData.photo
+        // this.email = userData.email
       }
     })
   },
 
   data () {
     return {
-      username: '',
-      phone: '',
-      photo: '',
-      email: ''
+      userData: {
+        username: '',
+        phone: '',
+        photo: '',
+        email: ''
+      }
     }
   },
 
   methods: {
     update: function () {
+      var userData = this.userData
       this.$api.user.updateUser(this.$route.params.uid, {
-        email: this.email,
-        phone: this.phone,
-        photo: this.photo
+        email: userData.email,
+        phone: userData.phone,
+        photo: userData.photo
       }, (res) => {
         let userData = res.userData
         if (this.$route.params.uid === this.$store.state.auth.userInfo.id) {
