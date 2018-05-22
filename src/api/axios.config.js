@@ -2,9 +2,9 @@ import axios from 'axios'
 
 let AUTH_TOKEN = window.localStorage.getItem('token') || window.sessionStorage.getItem('token') || ''
 
-axios.defaults.baseURL = 'http://zhangzhenkai.com:3705/'
+axios.defaults.baseURL = 'http://api.zhangzhenkai.com/'
 
-axios.defaults.timeout = 3000
+axios.defaults.timeout = 30000
 
 axios.defaults.responseType = 'json'
 
