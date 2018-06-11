@@ -74,6 +74,26 @@ export default new Router({
           path: '/category-add',
           name: 'CategoryAdd',
           component: resolve => require(['@/views/article/CategoryAdd'], resolve)
+        },
+        {
+          path: '/role-add',
+          name: 'RoleAdd',
+          component: resolve => require(['@/views/rights/RoleAdd'], resolve)
+        },
+        {
+          path: '/role-table',
+          name: 'RoleTable',
+          component: resolve => require(['@/views/rights/RoleTable'], resolve)
+        },
+        {
+          path: '/rights-add',
+          name: 'RightsAdd',
+          component: resolve => require(['@/views/rights/RightsAdd'], resolve)
+        },
+        {
+          path: '/rights-table',
+          name: 'RightsTable',
+          component: resolve => require(['@/views/rights/RightsTable'], resolve)
         }
       ]
     },

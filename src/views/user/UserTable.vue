@@ -62,16 +62,21 @@ export default {
     }
   },
 
+  mounted () {
+    console.log(this.$kmodal)
+    this.$kmodal.show()
+  },
+
   methods: {
     fetchUsers: function () {
-      this.$api.user.fetchUsers((res) => {
+      this.$api.user.fetchUsers().then((res) => {
         if (res.statusCode === 20000) {
           this.users = res.users
         }
       })
     },
     remove: function (id) {
-      this.$api.user.removeUser(id, (res) => {
+      this.$api.user.removeUser(id).then((res) => {
         this.fetchUsers()
       })
     }

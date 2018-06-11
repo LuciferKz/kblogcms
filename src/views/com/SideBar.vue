@@ -87,6 +87,32 @@ export default {
               children: []
             }
           ]
+        },
+        {
+          name: 'Rights',
+          icon: 'fa-user-secret',
+          children: [
+            {
+              name: 'Role Table',
+              link: { name: 'RoleTable' },
+              children: []
+            },
+            {
+              name: 'Role Add',
+              link: { name: 'RoleAdd' },
+              children: []
+            },
+            {
+              name: 'Rights Table',
+              link: { name: 'RightsTable' },
+              children: []
+            },
+            {
+              name: 'Rights Add',
+              link: { name: 'RightsAdd' },
+              children: []
+            }
+          ]
         }
       ]
     }

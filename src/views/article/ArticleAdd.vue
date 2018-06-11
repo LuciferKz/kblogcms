@@ -51,7 +51,7 @@ export default {
 
   methods: {
     fetchCategories: function () {
-      this.$api.category.fetchAll((res) => {
+      this.$api.category.fetchAll().then((res) => {
         let _categories = [{value: 'default', text: '请选择文章类别'}]
         for (var i = 0, len = res.categories.length; i < len; i++) {
           _categories.push({
@@ -73,7 +73,7 @@ export default {
         content: this.articleContent,
         author: this.$store.state.auth.userInfo.username,
         categoryId: this.articleType
-      }, (res) => {
+      }).then((res) => {
         console.log(res)
         if (res.statusCode === 20000) {
           this.$router.push({name: 'ArticleTable'})

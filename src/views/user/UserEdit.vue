@@ -47,17 +47,11 @@ export default {
   name: 'UserEdit',
 
   created: function () {
-    this.$api.user.fetchUserData(this.$route.params.uid, (res) => {
+    this.$api.user.fetchUserData(this.$route.params.uid).then((res) => {
       if (res.statusCode === 20000) {
         let userData = res.userData
         userData.phone = userData.phone && userData.phone.toString()
         this.userData = userData
-        console.log(this.userData)
-
-        // this.username = userData.username
-        // this.phone = userData.phone.toString()
-        // this.photo = userData.photo
-        // this.email = userData.email
       }
     })
   },
@@ -80,7 +74,7 @@ export default {
         email: userData.email,
         phone: userData.phone,
         photo: userData.photo
-      }, (res) => {
+      }).then((res) => {
         let userData = res.userData
         if (this.$route.params.uid === this.$store.state.auth.userInfo.id) {
           this.$store.commit('ADD_USER_DATA', userData)

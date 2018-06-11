@@ -1,44 +1,29 @@
 import axios from './axios.config.js'
 
-const fetchAll = function (cb) {
-  axios.get('/article/all')
-  .then(function (res) {
-    cb(res.data)
-  })
+const fetchAll = function () {
+  return axios.get('/article/all')
 }
 
-const fetchById = function (id, cb) {
-  axios.get('/article/' + id)
-  .then(function (res) {
-    cb(res.data)
-  })
+const fetchById = function (id) {
+  return axios.get('/article/' + id)
 }
 
-const insert = function (article, cb) {
-  axios.post('/article/new', {
+const insert = function (article) {
+  return axios.post('/article/new', {
     article: article
   })
-  .then(function (res) {
-    cb(res.data)
-  })
 }
 
-const updateById = function (id, article, cb) {
-  axios.post('/article/update', {
+const updateById = function (id, article) {
+  return axios.post('/article/update', {
     id: id,
     article: article
   })
-  .then(function (res) {
-    cb(res.data)
-  })
 }
 
-const removeById = function (id, cb) {
-  axios.post('/article/remove', {
+const removeById = function (id) {
+  return axios.post('/article/remove', {
     id: id
-  })
-  .then(function (res) {
-    cb(res.data)
   })
 }
 

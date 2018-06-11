@@ -65,19 +65,13 @@ export default {
     },
     login: function () {
       this.reset()
-      this.$api.user.login(this.formData.username, this.formData.password, (res) => {
+      this.$api.user.login(this.formData).then((res) => {
         console.log(res)
         if (res.statusCode === 20000) {
           let userData = res.userData
-          if (this.rememberMeOrNot[0] === 'Y') {
-            localStorage.setItem('uid', userData.id)
-            localStorage.setItem('token', userData.token)
-          } else {
-            sessionStorage.setItem('uid', userData.id)
-            sessionStorage.setItem('token', userData.token)
-          }
-          this.$store.commit('ADD_USER_DATA', {username: userData.username, photo: userData.photo})
-
+          userData.remember = this.rememberMeOrNot[0]
+          this.$store.commit('ADD_USER_DATA', userData)
+          console.log(this.$store.state.auth.userInfo)
           this.$router.push({'name': 'Index'})
         } else if (res.statusCode === 10001) {
           this.formIptCls.username = 'has-feedback has-error'

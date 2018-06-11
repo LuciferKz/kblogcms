@@ -33,10 +33,10 @@ export default {
     submit: function () {
       this.$api.category.insert({
         name: this.categoryName
-      }, function (res) {
+      }).then((res) => {
         console.log(res)
         if (res.statusCode === 20000) {
-
+          this.$router.push({name: 'CategoryTable'})
         }
       })
     }

@@ -15,11 +15,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="article in articles">
+        <tr v-if="articles" v-for="article in articles">
           <td><router-link :to="{name: 'ArticlePreview', params: {artid: article._id}}">{{article.title}}</router-link></td>
           <td>{{article.author}}</td>
-          <td>{{article.meta.createAt}}</td>
-          <td>{{article.meta.updateAt}}</td>
+          <td>{{article.meta.createAt | formatDate }}</td>
+          <td>{{article.meta.updateAt | formatDate }}</td>
           <td>
             <router-link :to="{name:'ArticleEdit',params:{artid:article._id}}" class="glyphicon glyphicon-edit" title="编辑"></router-link>
             <a href="javascript:void(0)" class="glyphicon glyphicon-remove" title="删除" @click="removeArticle(article._id)"></a>
@@ -55,13 +55,13 @@ export default {
   data () {
     return {
       boxTitle: 'Article table',
-      articles: []
+      articles: null
     }
   },
 
   methods: {
     fetchArticles: function () {
-      this.$api.article.fetchAll((res) => {
+      this.$api.article.fetchAll().then((res) => {
         if (res.statusCode === 20000) {
           this.articles = res.articles
         }
@@ -69,7 +69,7 @@ export default {
     },
 
     removeArticle: function (id) {
-      this.$api.article.removeById(id, (res) => {
+      this.$api.article.removeById(id).then((res) => {
         if (res.statusCode === 20000) {
           this.fetchArticles()
         }

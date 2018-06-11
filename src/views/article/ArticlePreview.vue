@@ -10,7 +10,7 @@
       <div v-html="article.content"></div>
     </div>
     <div class="box-footer">
-      <router-link class="btn btn-app" :to="{name: 'ArticleEdit', params: {artid: article._id}}">
+      <router-link v-if="article._id" class="btn btn-app" :to="{name: 'ArticleEdit', params: {artid: article._id}}">
         <i class="fa fa-edit"></i> Edit
       </router-link>
     </div>
@@ -41,8 +41,7 @@ export default {
 
   methods: {
     fetchArticle: function () {
-      this.$api.article.fetchById(this.$route.params.artid, (res) => {
-        console.log(res)
+      this.$api.article.fetchById(this.$route.params.artid).then((res) => {
         if (res.statusCode === 20000) {
           this.article = res.article
         }

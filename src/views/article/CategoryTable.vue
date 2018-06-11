@@ -49,7 +49,7 @@ export default {
 
   methods: {
     fetchCategories () {
-      this.$api.category.fetchAll((res) => {
+      this.$api.category.fetchAll().then((res) => {
         console.log(1)
         if (res.statusCode === 20000) {
           this.categories = res.categories
@@ -58,7 +58,7 @@ export default {
     },
 
     removeCategory (id) {
-      this.$api.category.removeById(id, (res) => {
+      this.$api.category.removeById(id).then((res) => {
         if (res.statusCode === 20000) {
           this.fetchCategories()
         }

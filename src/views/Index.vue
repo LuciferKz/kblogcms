@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :class="[skinCls, sidebarCls]">
+  <div class="wrapper" :class="[sidebarCls]">
     <side-bar></side-bar>
     <main-header></main-header>
     <!-- <router-view></router-view> -->
@@ -15,6 +15,7 @@
       </section>
     </div>
     <main-footer></main-footer>
+    <k-modal ref="kmodal"></k-modal>
   </div>
 </template>
 
@@ -23,28 +24,20 @@ import ContentHeader from '@/components/adminLte/ContentHeader'
 
 export default {
   name: 'Index',
-  created: function () {
-    this.fetchUserData()
-  },
   data () {
     return {
       skinCls: 'skin-blue',
       pagePaths: []
     }
   },
+  created () {
+  },
+  mounted () {
+    this.$kmodal.init(this.$refs.kmodal)
+  },
   computed: {
     sidebarCls () {
       return this.$store.getters.sidebarCls
-    }
-  },
-  methods: {
-    fetchUserData: function () {
-      let uid = localStorage.uid || sessionStorage.uid
-
-      this.$api.user.fetchUserData(uid, (res) => {
-        let userData = res.userData
-        this.$store.commit('ADD_USER_DATA', userData)
-      })
     }
   },
   components: { ContentHeader },
@@ -61,10 +54,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-  .wrapper{
-    height: auto;
-    min-height: 100%;
-  }
-</style>

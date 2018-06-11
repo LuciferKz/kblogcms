@@ -1,5 +1,5 @@
 <template>
-  <li class="treeview" @click="toggle" :class="{'menu-open': open}" ref="menuItem">
+  <li class="treeview" :class="{'menu-open': open}" ref="menuItem">
     <router-link :to="menuModel.link" v-if="menuModel.link">
       <i class="fa" :class="menuModel.icon ? menuModel.icon : 'fa-circle-o'"></i>
       <span> {{menuModel.name}}</span>
@@ -7,7 +7,7 @@
         <i class="fa fa-angle-left pull-right"></i>
       </span>
     </router-link>
-    <a href="javascript:void(0)" v-else>
+    <a @click="toggle" href="javascript:void(0)" v-else>
       <i class="fa" :class="menuModel.icon ? menuModel.icon : 'fa-circle-o'"></i>
       <span> {{menuModel.name}}</span>
       <span class="pull-right-container" v-if="menuModel.children.length > 0">
@@ -82,7 +82,9 @@ export default {
          -o-transition: all .5s ease;
             transition: all .5s ease;
   }
-
+  .sidebar-menu a:focus {
+    text-decoration: none;
+  }
   .sidebar-menu a>.fa-angle-left,
   .sidebar-menu a>.pull-right-container>.fa-angle-left{
     -webkit-transition: transform .5s ease;

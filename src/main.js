@@ -6,7 +6,8 @@ import router from './router'
 import store from './store/index.js'
 import api from './api'
 import tween from 'tween.js'
-import setComponentTo from './components'
+import kmodal from 'kmodal'
+import './components'
 
 Vue.config.productionTip = false
 
@@ -14,7 +15,40 @@ Vue.prototype.$api = api
 
 Vue.prototype.$tween = tween
 
-setComponentTo(Vue)
+Vue.use(kmodal)
+
+Vue.filter('formatDate', function (date) {
+  return date.split('.')[0].replace('T', ' ')
+})
+
+// 响应结果状态码不为20000都为失败
+// axios.interceptors.response.use((res) => {
+//   if (res.data.statusCode !== 20000) {
+
+//   } else {
+//     return res.data
+//   }
+// }, (err) => {
+//   console.log(err)
+//   return Promise.reject(err)
+// })
+
+Vue.directive('check-img', {
+  inserted: function (el) {
+    let _img = document.createElement('img')
+    _img.src = el.dataset.src
+    _img.onload = function () {
+      el.src = el.dataset.src
+    }
+  },
+  update: function (el) {
+    let _img = document.createElement('img')
+    _img.src = el.dataset.src
+    _img.onload = function () {
+      el.src = el.dataset.src
+    }
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

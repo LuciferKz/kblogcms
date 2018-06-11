@@ -61,7 +61,7 @@ export default {
 
   methods: {
     fetchCategories: function () {
-      this.$api.category.fetchAll((res) => {
+      this.$api.category.fetchAll().then((res) => {
         let _categories = [{value: 'default', text: '请选择文章类别'}]
         for (var i = 0, len = res.categories.length; i < len; i++) {
           _categories.push({
@@ -74,7 +74,7 @@ export default {
     },
 
     fetchArticle: function () {
-      this.$api.article.fetchById(this.$route.params.artid, (res) => {
+      this.$api.article.fetchById(this.$route.params.artid).then((res) => {
         this.articleTitle = res.article.title
         this.articleContent = res.article.content
         this.articleAuthor = res.article.author
@@ -92,7 +92,7 @@ export default {
         content: this.articleContent,
         author: this.$store.state.auth.userInfo.username,
         categoryId: this.articleType
-      }, (res) => {
+      }).then((res) => {
         if (res.statusCode === 20000) {
           this.$router.push({name: 'ArticlePreview', params: {artid: this.$route.params.artid}})
         }

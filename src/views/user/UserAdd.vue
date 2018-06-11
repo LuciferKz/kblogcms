@@ -5,50 +5,60 @@
     </div>
     <div class="box-body">
       <KelInput
-        id = "userEditName"
+        id = "userNewName"
         type = "text"
         placeholder = "User name"
         labelText = "User name"
         v-model = "username"
+        :formCls = "formCls.username"
+        errorMsg = "用户名不能为空"
       />
       <KelInput
-        id = "userEditName"
+        id = "userNewPwd"
         type = "password"
         placeholder = "Password"
         labelText = "Password"
         v-model = "password"
+        :formCls = "formCls.password"
+        errorMsg = "密码不能为空"
       />
       <KelInput
-        id = "userEditName"
+        id = "userRetypePwd"
         type = "password"
         placeholder = "Retype password"
         labelText = "Retype password"
         v-model = "retypePassword"
-        :formCls = "diffPwd?'has-error':''"
+        :formCls = "formCls.retypePassword"
         errorMsg = "两次密码输入结果不同"
         @input = "retypePwd"
       />
       <KelInput
-        id = "userEditPhone"
+        id = "userNewPhone"
         type = "tel"
         placeholder = "Phone"
         labelText = "Phone"
         v-model = "phone"
       />
       <KelInput
-        id = "userEditEmail"
+        id = "userNewEmail"
         type = "email"
         placeholder = "Email"
         labelText = "Email"
         v-model = "email"
       />
       <KelInput
-        id = "userEditPhoto"
+        id = "userNewPhoto"
         type = "text"
         placeholder = "User Photo"
         labelText = "User Photo"
         v-model = "photo"
         helpText = "只支持使用图片绝对地址，http:// or https://"
+      />
+      <KelSelect
+        v-model = "role"
+        :options = "roles"
+        errorMsg = "必须选择用户角色."
+        :formCls = "formCls.role"
       />
     </div>
     <div class="box-footer">
@@ -72,6 +82,15 @@ export default {
         this.email = userData.email
       }
     })
+
+    this.$api.role.fetchAll((res) => {
+      if (res.statusCode === 20000) {
+        this.roles = res.roles.map(function (role) {
+          return { value: role._id, text: role.name }
+        })
+        this.roles.unshift({value: '1', text: '请选择用户角色'})
+      }
+    })
   },
 
   data () {
@@ -81,18 +100,31 @@ export default {
       photo: '',
       email: '',
       password: '',
+      role: '1',
+      roles: [{value: '1', text: '请选择用户角色'}],
       retypePassword: '',
-      diffPwd: false
+      formCls: {}
     }
   },
 
   methods: {
     insert: function () {
+      this.formCls = {}
+      if (!/[a-zA-Z0-9]{6,}/.test(this.username)) {
+        this.$set(this.formCls, 'username', 'has-error')
+        return
+      }
+      if (!/[a-zA-Z0-9]{6,}/.test(this.password)) {
+        this.$set(this.formCls, 'password', 'has-error')
+        return
+      }
       if (this.password !== this.retypePassword) {
-        this.diffPwd = true
-        return true
-      } else {
-        this.diffPwd = false
+        this.$set(this.formCls, 'retypePassword', 'has-error')
+        return
+      }
+      if (this.role === '1') {
+        this.$set(this.formCls, 'role', 'has-error')
+        return
       }
 
       this.$api.user.insertUser({
@@ -101,7 +133,7 @@ export default {
         photo: this.photo,
         email: this.email,
         password: this.password
-      }, (res) => {
+      }).then((res) => {
         if (res.statusCode === 20000) {
           this.$router.push({name: 'UserTable'})
         } else {

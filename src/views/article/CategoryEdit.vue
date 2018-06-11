@@ -35,15 +35,16 @@ export default {
 
   methods: {
     fetchCategory: function () {
-      this.$api.category.fetchById(this.$route.params.catid, (res) => {
-        console.log(res)
-        this.categoryName = res.category.name
+      this.$api.category.fetchById(this.$route.params.catid).then((res) => {
+        if (res && res.category) {
+          this.categoryName = res.category.name
+        }
       })
     },
     update: function () {
       this.$api.category.updateById(this.$route.params.catid, {
         name: this.categoryName
-      }, (res) => {
+      }).then((res) => {
         console.log(res)
         if (res.statusCode === 20000) {
           this.$router.push({name: 'CategoryTable'})
