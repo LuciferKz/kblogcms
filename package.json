@@ -23,7 +23,8 @@
     "vue-axios": "^2.0.2",
     "vue-router": "^2.3.1",
     "vue2-editor": "^2.0.24",
-    "vuex": "^2.3.1"
+    "vuex": "^2.3.1",
+    "kmodal": "^1.1.0",
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -66,7 +67,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.30",
     "karma-webpack": "^2.0.2",
-    "kmodal": "^1.1.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "lolex": "^1.5.2",
