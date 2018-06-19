@@ -24,7 +24,7 @@
     "vue-router": "^2.3.1",
     "vue2-editor": "^2.0.24",
     "vuex": "^2.3.1",
-    "kmodal": "^1.1.0",
+    "kmodal": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
