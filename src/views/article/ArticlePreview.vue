@@ -53,6 +53,7 @@ export default {
 
 <style lang="css" scoped>
   .updateTime{
+    margin-bottom: 10px;
     font-size: 16px;
   }
 </style>

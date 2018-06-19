@@ -63,8 +63,6 @@ export default {
   },
 
   mounted () {
-    console.log(this.$kmodal)
-    this.$kmodal.show()
   },
 
   methods: {
