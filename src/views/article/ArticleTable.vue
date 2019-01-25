@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-if="articles" v-for="article in articles">
+        <tr v-for="article in articles" :key="article._id">
           <td><router-link :to="{name: 'ArticlePreview', params: {artid: article._id}}">{{article.title}}</router-link></td>
           <td>{{article.author}}</td>
           <td>{{article.meta.createAt | formatDate }}</td>
@@ -23,6 +23,7 @@
           <td>
             <router-link :to="{name:'ArticleEdit',params:{artid:article._id}}" class="glyphicon glyphicon-edit" title="编辑"></router-link>
             <a href="javascript:void(0)" class="glyphicon glyphicon-remove" title="删除" @click="removeArticle(article._id)"></a>
+            <a href="javascript:void(0)" class="glyphicon" :class="articleClass(article.state)" :title="articleState(article.state)" @click="toggleArticle(article)"></a>
           </td>
         </tr>
         </tbody>
@@ -55,7 +56,7 @@ export default {
   data () {
     return {
       boxTitle: 'Article table',
-      articles: null
+      articles: []
     }
   },
 
@@ -74,6 +75,30 @@ export default {
           this.fetchArticles()
         }
       })
+    },
+
+    toggleArticle: function (article) {
+      this.$api.article.updateById(article._id, {
+        state: 1 ^ article.state
+      }).then((res) => {
+        if (res.statusCode === 20000) {
+          this.fetchArticles()
+        }
+      })
+    }
+
+  },
+  computed: {
+    articleClass () {
+      return function (state) {
+        return `glyphicon-${(state ? 'pause' : 'play')}`
+      }
+    },
+
+    articleState () {
+      return function (state) {
+        return state ? '停用' : '启用'
+      }
     }
   }
 }
