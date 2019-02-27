@@ -32,6 +32,7 @@ export default {
 @import "./assets/css/normalize.css";
 @import "./bootstrap/css/bootstrap.min.css";
 @import "./bootstrap/css/bootstrap-theme.min.css";
+
 /*
 @import "./assets/css/AdminLTE.min.css";
 @import "./assets/css/skins/_all-skins.min.css";

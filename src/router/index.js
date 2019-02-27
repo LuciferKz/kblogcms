@@ -78,7 +78,12 @@ export default new Router({
         {
           path: '/role-add',
           name: 'RoleAdd',
-          component: resolve => require(['@/views/rights/RoleAdd'], resolve)
+          component: resolve => require(['@/views/rights/RoleEdit'], resolve)
+        },
+        {
+          path: '/role-edit/:roleid',
+          name: 'RoleEdit',
+          component: resolve => require(['@/views/rights/RoleEdit'], resolve)
         },
         {
           path: '/role-table',

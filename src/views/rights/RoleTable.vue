@@ -12,10 +12,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="role in roles">
+        <tr v-for="role in roles" :key="role._id">
           <td>{{role.name}}</td>
           <td>
-            <router-link :to="{name:'CategoryEdit',params:{catid:role._id}}" class="glyphicon glyphicon-edit" title="编辑"></router-link>
+            <router-link :to="{name:'RoleEdit',params:{roleid:role._id}}" class="glyphicon glyphicon-edit" title="编辑"></router-link>
             <a href="javascript:void(0)" class="glyphicon glyphicon-remove" title="删除" @click="removeRole(role._id)"></a>
           </td>
         </tr>

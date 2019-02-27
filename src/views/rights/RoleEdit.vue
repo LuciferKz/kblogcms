@@ -1,26 +1,23 @@
 <template>
   <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Role Add</h3>
+      <h3 class="box-title">Role {{ action }}</h3>
     </div>
     <div class="box-body">
       <KelInput
         id = "roleName"
-        type = "text"
         placeholder = "Role name"
         labelText = "Role name"
         v-model = "model.name"
       />
       <KelInput
         id = "roleKeys"
-        type = "text"
         placeholder = "Role keys"
         labelText = "Role keys"
         v-model = "model.keys"
       />
       <KelInput
         id = "roleLevel"
-        type = "text"
         placeholder = "Role level"
         labelText = "Role level"
         v-model = "model.level"
@@ -35,10 +32,11 @@
 <script>
 export default {
 
-  name: 'RoleAdd',
+  name: 'RoleEdit',
 
   data () {
     return {
+      roleId: null,
       model: {
         name: null,
         keys: null,
@@ -46,12 +44,31 @@ export default {
       }
     }
   },
-
   methods: {
-    submit: function () {
+    submit () {
       this.$api.role.insert(this.model).then(function (res) {
         console.log(res)
       })
+    }
+  },
+  computed: {
+    action () {
+      return this.roleId ? 'Edit' : 'Add'
+    }
+  },
+  mounted () {
+    const roleId = this.roleId = this.$route.params.roleid
+    console.log(roleId)
+    if (roleId) {
+      this.$api.role.fetchById(roleId).then(res => {
+        Object.assign(this.model, res.role)
+      })
+    } else {
+      this.model = {
+        name: null,
+        keys: null,
+        level: null
+      }
     }
   }
 }

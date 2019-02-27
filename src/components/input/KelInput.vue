@@ -4,10 +4,7 @@
 
       <label v-if="hasLabel" :for="id" :class="labelCls">{{ labelText }}</label>
 
-      <input v-if="type == 'text'" :id="id" type="text" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
-      <input v-else-if="type == 'tel'" :id="id" type="tel" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
-      <input v-else-if="type == 'email'" :id="id" type="email" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
-      <input v-else-if="type == 'password'" :id="id" type="password" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
+      <input :id="id" :type="type" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
       <span v-if="iconCls != ''" class="glyphicon form-control-feedback" :class="iconCls"></span>
 
       <span class="help-block" v-if="hasErrorMsg">{{errorMsg}}</span>
@@ -21,7 +18,7 @@ export default {
   name: 'kel-input',
   props: {
     id: String,
-    value: String,
+    value: [String, Number],
     inputCls: String,
     formCls: String,
     iconCls: String,
