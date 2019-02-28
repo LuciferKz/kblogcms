@@ -6,59 +6,26 @@
     <div class="box-body">
       <k-form ref="form" :form="model" :rules="rules">
         <k-form-item prop="username" label="User name">
-          <kel-input
-            id = "userNewName"
-            placeholder = "User name"
-            v-model = "model.username"></kel-input>
+          <kel-input placeholder = "User name" v-model = "model.username"></kel-input>
         </k-form-item>
         <k-form-item v-if="!uid" prop="password" label="Password">
-          <kel-input
-            id = "userNewPwd"
-            type = "password"
-            placeholder = "Password"
-            v-model = "model.password"
-          ></kel-input>
+          <kel-input type = "password" placeholder = "Password" v-model = "model.password"></kel-input>
         </k-form-item>
         <k-form-item v-if="!uid" prop="retypePassword" label="Retype password">
-          <kel-input
-            id = "userRetypePwd"
-            type = "password"
-            placeholder = "Retype password"
-            v-model = "model.retypePassword"
-            errorMsg = "两次密码输入结果不同"
-          ></kel-input>
+          <kel-input type = "password" placeholder = "Retype password" v-model = "model.retypePassword"></kel-input>
         </k-form-item>
         <k-form-item prop="phone" label="Phone">
-          <kel-input
-            id = "userNewPhone"
-            type = "tel"
-            placeholder = "Phone"
-            v-model = "model.phone"
-          ></kel-input>
+          <kel-input type = "tel" placeholder = "Phone" v-model = "model.phone"></kel-input>
         </k-form-item>
         <k-form-item prop="email" label="Email">
-          <kel-input
-            id = "userNewEmail"
-            type = "email"
-            placeholder = "Email"
-            v-model = "model.email"
-          ></kel-input>
+          <kel-input type = "email" placeholder = "Email" v-model = "model.email"></kel-input>
         </k-form-item>
         <k-form-item prop="photo" label="User Photo" tip="只支持使用图片绝对地址，http:// or https://">
-          <kel-input
-            id = "userNewPhoto"
-            placeholder = "User Photo"
-            v-model = "model.photo"
-          ></kel-input>
+          <kel-input placeholder = "User Photo" v-model = "model.photo"></kel-input>
         </k-form-item>
         <k-form-item v-if="!uid" prop="role" label="User Role">
           <kel-select v-model = "model.role" placeholder="请选择用户角色">
-            <kel-option 
-              v-for="role in roles" 
-              :key="role._id"
-              :label="role.name"
-              :value="role._id">
-            </kel-option>
+            <kel-option v-for="role in roles" :key="role._id" :label="role.name" :value="role._id"></kel-option>
           </kel-select>
         </k-form-item>
       </k-form>
