@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "async-validator": "^1.10.1",
     "axios": "^0.16.1",
     "ckeditor": "^4.7.0",
     "jquery": "^3.2.1",

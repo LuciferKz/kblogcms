@@ -1,21 +1,23 @@
 <template>
-    <div class="form-group" :class="formCls">
-      <label class="control-label" for="inputError" v-if="hasErrorMsg"><i class="fa fa-times-circle-o"></i> Input with error</label>
-
-      <label v-if="hasLabel" :for="id" :class="labelCls">{{ labelText }}</label>
-
-      <input :id="id" :type="type" class="form-control" :class="inputCls" v-model="currentVal" :placeholder="placeholder" autocomplete="off" :disabled="disabled">
-      <span v-if="iconCls != ''" class="glyphicon form-control-feedback" :class="iconCls"></span>
-
-      <span class="help-block" v-if="hasErrorMsg">{{errorMsg}}</span>
-      <!-- 帮助提示 -->
-      <p class="help-block" v-if="helpText">{{helpText}}</p>
+    <div class="kel-input form-group">
+      <input 
+        :id="id"
+        :type="type"
+        class="form-control"
+        :class="inputCls"
+        v-model="currentVal"
+        :placeholder="placeholder"
+        autocomplete="off"
+        :disabled="disabled"
+        @input="handleInput"
+        @change="handleChange">
     </div>
 </template>
 
 <script>
 export default {
-  name: 'kel-input',
+  name: 'KelInput',
+  componentName: 'KelInput',
   props: {
     id: String,
     value: [String, Number],
@@ -50,13 +52,19 @@ export default {
       },
       set: function (val) {
         this.$emit('input', val)
+        this.dispatch('KFormItem', 'form.item.change', val)
       }
-    },
-    hasLabel () {
-      return this.labelText !== undefined
     },
     hasErrorMsg () {
       return this.formCls && this.formCls.indexOf('has-error') > -1
+    }
+  },
+  methods: {
+    handleInput (event) {
+      this.$emit('input', event.target.value)
+    },
+    handleChange (event) {
+      this.$emit('change', event.target.value)
     }
   }
 }

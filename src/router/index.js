@@ -38,7 +38,7 @@ export default new Router({
         {
           path: '/user-add',
           name: 'UserAdd',
-          component: resolve => require(['@/views/user/UserAdd'], resolve)
+          component: resolve => require(['@/views/user/UserEdit'], resolve)
         },
         {
           path: '/article-table',

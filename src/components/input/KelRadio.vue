@@ -12,7 +12,8 @@
 <script>
 export default {
 
-  name: 'kel-radio',
+  name: 'KelRadio',
+  componentName: 'KelRadio',
 
   props: {
     data: {

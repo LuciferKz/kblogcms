@@ -8,12 +8,17 @@ import api from './api'
 import tween from 'tween.js'
 import kmodal from 'kmodal'
 import './components'
+import validate from './utils/validate'
 
 Vue.config.productionTip = false
 
 Vue.prototype.$api = api
 
 Vue.prototype.$tween = tween
+
+for (let funcName in validate) {
+  Vue.prototype[funcName] = validate[funcName]
+}
 
 Vue.use(kmodal)
 

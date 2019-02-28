@@ -12,7 +12,8 @@
 <script>
 export default {
 
-  name: 'kel-check',
+  name: 'KelCheck',
+  componentName: 'KelCheck',
 
   props: {
     data: {
