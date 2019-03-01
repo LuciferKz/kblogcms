@@ -22,36 +22,45 @@ export default {
   componentName: 'KelSelect',
 
   props: {
-    value: String,
+    value: [String, Number],
     placeholder: {
       type: String,
       default: ''
     }
   },
 
+  provide () {
+    return {
+      select: this
+    }
+  },
+
   data () {
     return {
       visible: false,
-      selected: {}
+      selected: {},
+      options: []
     }
   },
 
   created () {
     this.$on('handleSelectOption', this.handleSelectOption)
+    this.$on('setSelected', this.setSelected)
   },
 
   computed: {
-    currentVal: {
-      get () {
-        return this.value
-      },
-      set (val) {
-        this.$emit('input', val)
-        this.dispatch('KFormItem', 'form.item.change', val)
-      }
-    },
     currentLabel () {
       return this.selected.label
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      this.$emit('input', newVal)
+      this.setSelected(newVal)
+      this.dispatch('KFormItem', 'form.item.change', newVal)
+    },
+    options () {
+      this.setSelected()
     }
   },
   methods: {
@@ -64,14 +73,20 @@ export default {
     },
     handleFocus () {},
     handleSelectOption (option) {
-      this.selected = option
-      if (!this.isEqualValue(option.value, this.currentVal)) {
-        this.currentVal = option.value
+      if (!this.isEqualValue(option.value, this.value)) {
+        this.$emit('input', option.value)
       }
       this.visible = false
     },
+    setSelected () {
+      const option = this.getOption(this.value)
+      this.selected = option
+    },
     isEqualValue (newVal, oldVal) {
       return newVal === oldVal
+    },
+    getOption (val) {
+      return this.options.find(opt => opt.value === val) || {}
     }
   },
   mounted () {
@@ -79,9 +94,12 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
-  .form-control[readonly] {
-    background-color: #FFF;
-    cursor: pointer;
+<style lang="less" scoped>
+  .form-group {
+    position: relative;
+    .form-control[readonly] {
+      background-color: #FFF;
+      cursor: pointer;
+    }
   }
 </style>

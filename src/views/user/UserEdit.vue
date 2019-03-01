@@ -4,7 +4,7 @@
       <h3 class="box-title">User {{ uid ? 'Edit' : 'Add' }}</h3>
     </div>
     <div class="box-body">
-      <k-form ref="form" :form="model" :rules="rules">
+      <k-form ref="form" :model="model" :rules="rules">
         <k-form-item prop="username" label="User name">
           <kel-input
             id = "userNewName"

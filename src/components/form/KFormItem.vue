@@ -13,6 +13,7 @@
 </template>
 <script>
 import AsyncValidator from 'async-validator'
+const noop = function () {}
 
 export default {
   name: 'KFormItem',
@@ -28,30 +29,31 @@ export default {
   data () {
     return {
       validateState: '',
-      validateMessage: '',
-      fieldValue: ''
+      validateMessage: ''
     }
   },
 
-  inject: ['formRules'],
+  inject: ['form'],
 
   methods: {
     handleChange (value) {
-      this.fieldValue = value
       this.validate()
     },
-    validate () {
-      if (this.rules) {
+    validate (callback = noop) {
+      if (this.rules && this.rules.length > 0) {
         const descriptor = {}
         descriptor[this.prop] = this.rules
         const validate = new AsyncValidator(descriptor)
         const model = {}
         model[this.prop] = this.fieldValue
-        console.log(model)
+        // console.log(model)
         validate.validate(model, { firstFileds: true }, (error, fields) => {
           this.validateState = !error ? 'success' : 'error'
           this.validateMessage = error ? error[0].message : ''
+          callback(this.validateMessage, fields)
         })
+      } else {
+        callback()
       }
     }
   },
@@ -63,7 +65,10 @@ export default {
   },
   computed: {
     rules () {
-      return this.formRules[this.prop]
+      return this.form.rules[this.prop]
+    },
+    fieldValue () {
+      return this.form.model[this.prop]
     }
   }
 }

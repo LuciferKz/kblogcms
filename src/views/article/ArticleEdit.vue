@@ -4,34 +4,26 @@
       <h3 class="box-title">Article Edit</h3>
     </div>
     <div class="box-body">
-      <KelInput
-        id = "articleEditTitle"
-        type = "text"
-        placeholder = "Article title"
-        labelText = "Article title"
-        v-model = "articleTitle"
-      />
-      <KelInput
-        id = "articleEditAuhthor"
-        type = "text"
-        placeholder = "Article author"
-        labelText = "Article author"
-        v-model = "articleAuthor"
-        disabled
-      />
-      <KelSelect
-        v-model = "articleType"
-        :options = "categories"
-        :formCls = "categoryCls"
-        errorMsg = "必须选择一种文章类别."
-      />
+      <k-form ref="form" :model="model" :rules="rules">
+        <k-form-item prop="title" label="Article title">
+          <kel-input placeholder = "Article title" v-model = "model.title"></kel-input>
+        </k-form-item>
+        <k-form-item prop="author" label="Article author">
+          <kel-input placeholder = "Article author" v-model = "model.author" disabled></kel-input>
+        </k-form-item>
+        <k-form-item prop="categoryId" label="Article category">
+          <kel-select v-model="model.categoryId">
+            <kel-option v-for="category in categories" :key="category._id" :label="category.name" :value="category._id"></kel-option>
+          </kel-select>
+        </k-form-item>
+      </k-form>
       <div class="form-group">
         <label>文章内容</label>
-        <VueEditor v-model="articleContent" />
+        <VueEditor v-model="model.content" />
       </div>
     </div>
     <div class="box-footer">
-      <button type="button" class="btn btn-primary" @click="update">Update</button>
+      <button type="button" class="btn btn-primary" @click="handleSave">Update</button>
     </div>
   </div>
 </template>
@@ -43,70 +35,67 @@ export default {
 
   name: 'ArticleEdit',
 
+  components: { VueEditor },
+
   data () {
     return {
-      articleTitle: null,
-      articleContent: null,
-      articleAuthor: null,
-      articleType: 'default',
-      categoryCls: '',
-      categories: [{value: '1', text: '请选择文章类别'}]
+      artid: null,
+      model: {
+        title: null,
+        content: null,
+        author: null,
+        categoryId: null
+      },
+      categories: [],
+      rules: {
+        title: [{
+          required: true,
+          message: '文章标题不能为空'
+        }],
+        categoryId: [{
+          required: true,
+          message: '请选择所属文章类别'
+        }]
+      }
     }
   },
 
   created () {
+    this.artid = this.$route.params.artid
+    if (this.artid) {
+      this.fetchArticle()
+    }
     this.fetchCategories()
-    this.fetchArticle()
   },
 
   methods: {
     fetchCategories: function () {
       this.$api.category.fetchAll().then((res) => {
-        let _categories = [{value: 'default', text: '请选择文章类别'}]
-        for (var i = 0, len = res.categories.length; i < len; i++) {
-          _categories.push({
-            value: res.categories[i]._id,
-            text: res.categories[i].name
-          })
-        }
-        this.categories = _categories
+        this.categories = res.categories
       })
     },
 
     fetchArticle: function () {
-      this.$api.article.fetchById(this.$route.params.artid).then((res) => {
-        this.articleTitle = res.article.title
-        this.articleContent = res.article.content
-        this.articleAuthor = res.article.author
-        this.articleType = res.article.categoryId
+      this.$api.article.fetchById(this.artid).then((res) => {
+        this.model = res.article
+        console.log(this.model)
       })
     },
 
-    update: function () {
-      if (this.articleType === 'default') {
-        this.categoryCls = 'has-error'
-        return true
-      }
-      this.$api.article.updateById(this.$route.params.artid, {
-        title: this.articleTitle,
-        content: this.articleContent,
-        author: this.$store.state.auth.userInfo.username,
-        categoryId: this.articleType
-      }).then((res) => {
-        if (res.statusCode === 20000) {
-          this.$router.push({name: 'ArticlePreview', params: {artid: this.$route.params.artid}})
+    handleSave: function () {
+      this.$refs.form.validate().then(valid => {
+        console.log(valid)
+        if (valid) {
+          (this.artid ? this.$api.article.updateById(this.artid, this.model) : this.$api.article.insert(this.model))
+          .then((res) => {
+            if (res.statusCode === 20000) {
+              this.$router.push({name: 'ArticlePreview', params: { artid: this.artid }})
+            }
+          })
         }
       })
     }
-  },
-
-  watch: {
-    articleType: function () {
-      this.categoryCls = ''
-    }
-  },
-
-  components: { VueEditor }
+  }
 }
 </script>
 
