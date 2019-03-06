@@ -4,7 +4,7 @@
       <h3 class="box-title">{{boxTitle}}</h3>
     </div>
     <div class="box-body">
-      <table id="example2" class="table table-bordered table-hover">
+      <table class="table table-bordered table-hover">
         <thead>
         <tr>
           <th>Title</th>
@@ -37,14 +37,19 @@
         </tr>
         </tfoot>
       </table>
+      <pagination :limit="filter.limit" :skip="filter.skip" :total="total" @change="handleSkip"></pagination>
     </div>
   </div>
 </template>
 
 <script>
+import Pagination from '@/components/table/Pagination'
+
 export default {
 
   name: 'ArticleTable',
+
+  components: { Pagination },
 
   created () {
     this.fetchArticles()
@@ -56,20 +61,26 @@ export default {
   data () {
     return {
       boxTitle: 'Article table',
-      articles: []
+      articles: [],
+      filter: {
+        limit: 10,
+        skip: 0
+      },
+      total: 0
     }
   },
 
   methods: {
-    fetchArticles: function () {
-      this.$api.article.fetchAll().then((res) => {
+    fetchArticles () {
+      this.$api.article.fetch(this.filter).then((res) => {
         if (res.statusCode === 20000) {
           this.articles = res.articles
+          this.total = res.total
         }
       })
     },
 
-    removeArticle: function (id) {
+    removeArticle (id) {
       this.$api.article.removeById(id).then((res) => {
         if (res.statusCode === 20000) {
           this.fetchArticles()
@@ -77,7 +88,7 @@ export default {
       })
     },
 
-    toggleArticle: function (article) {
+    toggleArticle (article) {
       this.$api.article.updateById(article._id, {
         state: 1 ^ article.state
       }).then((res) => {
@@ -85,8 +96,11 @@ export default {
           this.fetchArticles()
         }
       })
+    },
+    handleSkip (page) {
+      this.filter.skip = (page - 1) * this.filter.limit
+      this.fetchArticles()
     }
-
   },
   computed: {
     articleClass () {
@@ -105,4 +119,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  table {
+    /* min-height: 500px */
+  }
 </style>

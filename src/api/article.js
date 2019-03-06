@@ -8,6 +8,10 @@ const fetchById = function (id) {
   return axios.get('/article/' + id)
 }
 
+const fetch = function (filter) {
+  return axios.post('/article/fetch', filter)
+}
+
 const insert = function (article) {
   return axios.post('/article/new', {
     article: article
@@ -28,6 +32,7 @@ const removeById = function (id) {
 }
 
 export default {
+  fetch,
   fetchAll,
   fetchById,
   insert,

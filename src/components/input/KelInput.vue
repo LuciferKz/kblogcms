@@ -54,9 +54,6 @@ export default {
         this.$emit('input', val)
         this.dispatch('KFormItem', 'form.item.change', val)
       }
-    },
-    hasErrorMsg () {
-      return this.formCls && this.formCls.indexOf('has-error') > -1
     }
   },
   methods: {
