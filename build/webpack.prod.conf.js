@@ -36,9 +36,11 @@ var webpackConfig = merge(baseWebpackConfig, {
       jQuery: "jquery",
       "window.jQuery": "jquery"
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    new UglifyJsPlugin({
+      uglifyOptions: {
+          compress: {
+              warnings: false
+          }
       },
       sourceMap: true
     }),
