@@ -87,6 +87,7 @@ export default {
         this.categoryCls = 'has-error'
         return true
       }
+      console.log(this.$store.state.auth.userInfo.username)
       this.$api.article.updateById(this.$route.params.artid, {
         title: this.articleTitle,
         content: this.articleContent,
