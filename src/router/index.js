@@ -48,7 +48,7 @@ export default new Router({
         {
           path: '/article-add',
           name: 'ArticleAdd',
-          component: resolve => require(['@/views/article/ArticleAdd'], resolve)
+          component: resolve => require(['@/views/article/ArticleEdit'], resolve)
         },
         {
           path: '/article-edit/:artid',

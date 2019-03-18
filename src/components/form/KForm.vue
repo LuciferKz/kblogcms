@@ -12,7 +12,7 @@ export default {
       type: Object,
       default: {}
     },
-    form: {
+    model: {
       type: Object,
       default: {}
     }
@@ -26,7 +26,7 @@ export default {
 
   provide () {
     return {
-      formRules: this.rules
+      form: this
     }
   },
 
@@ -37,7 +37,7 @@ export default {
       if (typeof callback !== 'function' && window.Promise) {
         validPromise = new Promise((resolve, reject) => {
           callback = function (message) {
-            !message ? resolve(message) : reject(message)
+            !message ? resolve(true) : reject(message)
           }
         })
       }
@@ -45,12 +45,13 @@ export default {
       let count = 0
       this.fields.forEach(field => {
         field.validate((message, fields) => {
-          invalidFields = Object.assign({}, invalidFields, field)
-          if (typeof callback === 'function' && ++count === fields.length) {
+          invalidFields = Object.assign({}, invalidFields, fields)
+          if (typeof callback === 'function' && ++count === this.fields.length) {
             callback(message, invalidFields)
           }
         })
       })
+      // console.log(validPromise)
       if (validPromise) return validPromise
     }
   },
