@@ -8,9 +8,9 @@
     <div class="col-sm-7">
       <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
         <ul class="pagination">
-          <li class="paginate_button previous" :class="{ disabled: currentPage === 1 }">Previous</li>
+          <li class="paginate_button previous" :class="{ disabled: currentPage === 1 }" @click="handlePrevPage">Previous</li>
           <li class="paginate_button" v-for="page in totalPage" :key="page" :class="{ active: currentPage === page }" @click="handleSkip(page)">{{ page }}</li>
-          <li class="paginate_button next" :class="{ disabled: currentPage === totalPage }">Next</li>
+          <li class="paginate_button next" :class="{ disabled: currentPage === totalPage }" @click="handleNextPage">Next</li>
         </ul>
       </div>
     </div>
@@ -46,7 +46,14 @@ export default {
 
   methods: {
     handleSkip (page) {
+      console.log(page)
       this.$emit('change', page)
+    },
+    handleNextPage () {
+      this.currentPage < this.totalPage && this.handleSkip(this.currentPage + 1)
+    },
+    handlePrevPage () {
+      this.currentPage > 1 && this.handleSkip(this.currentPage - 1)
     }
   }
 }
@@ -107,6 +114,9 @@ export default {
     cursor: default;
     background-color: #337ab7;
     border-color: #337ab7;
+  }
+  .pagination > li.paginate_button.disabled {
+    cursor: not-allowed;
   }
   .pagination.pagination-flat > li {
     border-radius: 0 !important;
