@@ -10,7 +10,8 @@
         autocomplete="off"
         :disabled="disabled"
         @input="handleInput"
-        @change="handleChange">
+        @change="handleChange"
+        @blur="handleBlur">
     </div>
 </template>
 
@@ -62,6 +63,9 @@ export default {
     },
     handleChange (event) {
       this.$emit('change', event.target.value)
+    },
+    handleBlur (event) {
+      this.dispatch('KFormItem', 'form.item.change', event.target.value)
     }
   }
 }

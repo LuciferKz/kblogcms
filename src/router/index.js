@@ -91,14 +91,9 @@ export default new Router({
           component: resolve => require(['@/views/rights/RoleTable'], resolve)
         },
         {
-          path: '/rights-add',
-          name: 'RightsAdd',
-          component: resolve => require(['@/views/rights/RightsAdd'], resolve)
-        },
-        {
-          path: '/rights-table',
-          name: 'RightsTable',
-          component: resolve => require(['@/views/rights/RightsTable'], resolve)
+          path: '/rights',
+          name: 'Rights',
+          component: resolve => require(['@/views/rights/Rights'], resolve)
         }
       ]
     },
@@ -111,6 +106,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: resolve => require(['@/views/Register'], resolve)
+    },
+    {
+      path: '*',
+      // component: resolve => require(['@/views/404'], resolve)
+      redirect: '/'
     }
   ]
 })
