@@ -1,14 +1,18 @@
 <template>
-  <div class="form-group" :class="{ 'open': visible }">
+  <div 
+    class="form-group" 
+    :class="{ 'open': visible }"
+    @click.stop="handleClick"
+  >
     <input 
       type="text"
       class="form-control form-control--readonly"
       :placeholder="placeholder"
       :value="currentLabel"
-      @input='handleInput'
-      @focus='handleFocus'
-      @click.stop='handleClick'
-      readonly='true'>
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      readonly="true">
     <ul class="kel-select dropdown-menu">
       <slot v-show="visible"></slot>
     </ul>
@@ -16,10 +20,13 @@
 </template>
 
 <script>
+import emiiter from '@/mixins/emiiter'
+
 export default {
 
   name: 'KelSelect',
   componentName: 'KelSelect',
+  mixins: [emiiter],
 
   props: {
     value: [String, Number],
@@ -71,7 +78,11 @@ export default {
     handleClick () {
       this.toggleMenu()
     },
-    handleFocus () {},
+    handleClose () {
+      this.visible = false
+    },
+    handleFocus () { },
+    handleBlur () { },
     handleSelectOption (option) {
       if (!this.isEqualValue(option.value, this.value)) {
         this.$emit('input', option.value)

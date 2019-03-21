@@ -1,11 +1,15 @@
 <template>
-  <li class="kel-option" @click="handleClick">
+  <li class="kel-option" @click.stop="handleClick">
     <a href="javscript:void(0)">{{ currentLabel }}</a>
   </li>
 </template>
 <script>
+import emiiter from '@/mixins/emiiter'
+
 export default {
   name: 'KelOption',
+
+  mixins: [emiiter],
 
   props: {
     label: String,

@@ -6,18 +6,22 @@
     <slot></slot>
     <span v-if="icon" class="glyphicon form-control-feedback" :class="icon"></span>
     <!-- 错误提示 -->
-    <div class="k-form-item__error--tip help-block" v-if="validateMessage">{{ validateMessage }}</div>
+    <div class="k-form-item__error--tip" v-if="validateMessage">{{ validateMessage }}</div>
     <!-- 帮助提示 -->
-    <div class="k-form-item__help--tip help-block" v-if="tip">{{tip}}</div>
+    <div class="k-form-item__help--tip" v-if="tip">{{tip}}</div>
   </div>
 </template>
 <script>
 import AsyncValidator from 'async-validator'
+
+import emiiter from '@/mixins/emiiter'
+
 const noop = function () {}
 
 export default {
   name: 'KFormItem',
   componentName: 'KFormItem',
+  mixins: [emiiter],
 
   props: {
     prop: String,
@@ -76,5 +80,11 @@ export default {
 <style lang="less">
   .k-form-item {
     position: relative;
+    height: 80px;
+  }
+  .k-form-item__error--tip {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #a94442;
   }
 </style>

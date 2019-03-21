@@ -1,5 +1,5 @@
 <template>
-    <div class="kel-input form-group">
+    <div class="kel-input">
       <input 
         :id="id"
         :type="type"
@@ -16,9 +16,12 @@
 </template>
 
 <script>
+import emiiter from '@/mixins/emiiter'
+
 export default {
   name: 'KelInput',
   componentName: 'KelInput',
+  mixins: [emiiter],
   props: {
     id: String,
     value: [String, Number],

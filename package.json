@@ -17,6 +17,7 @@
     "async-validator": "^1.10.1",
     "axios": "^0.16.1",
     "ckeditor": "^4.7.0",
+    "element-ui": "^2.6.3",
     "jquery": "^3.2.1",
     "kmodal": "^1.2.4",
     "qs": "^6.4.0",

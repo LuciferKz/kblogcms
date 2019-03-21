@@ -4,7 +4,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-check-img class="img-circle" alt="User Image">
+          <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-checkimg class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{userInfo.username}}</p>

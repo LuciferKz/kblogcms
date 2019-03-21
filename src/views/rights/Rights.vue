@@ -22,7 +22,7 @@
               </kel-select>
             </k-form-item>
             <k-form-item prop="path" label="路径">
-              <kel-input placeholder="请输入链接" v-model="model.name"></kel-input>
+              <kel-input placeholder="请输入链接" v-model="model.path"></kel-input>
             </k-form-item>
             <k-form-item prop="icon" label="图标">
               <kel-input placeholder="请输入图标" v-model="model.icon"></kel-input>

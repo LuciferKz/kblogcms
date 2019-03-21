@@ -15,5 +15,7 @@ const dispatch = function (componentName, eventName, params) {
 }
 
 export default {
-  dispatch
+  methods: {
+    dispatch
+  }
 }

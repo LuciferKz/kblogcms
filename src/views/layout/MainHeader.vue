@@ -88,13 +88,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-check-img class="user-image" alt="User Image">
+              <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-checkimg class="user-image" alt="User Image">
               <span class="hidden-xs">{{userInfo.username}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-check-img class="img-circle" alt="User Image">
+                <img src="~@/assets/img/user2-160x160.jpg" v-bind:data-src="userInfo.photo" v-checkimg class="img-circle" alt="User Image">
                 <p>
                   {{userInfo.username}} - Web Developer
                   <small>Member since Nov. 2012</small>
