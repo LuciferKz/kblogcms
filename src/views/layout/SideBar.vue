@@ -111,6 +111,7 @@ export default {
 
   computed: {
     userInfo () {
+      console.log(this.$store.state.auth.userInfo)
       return this.$store.state.auth.userInfo
     }
   },

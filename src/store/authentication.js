@@ -9,6 +9,7 @@ export default {
   mutations: {
     [types.ADD_USER_DATA] (state, user) {
       // return new Promise((resolve) => {
+      console.log(user)
       state.userInfo = user
       if (user.remember === 'Y') {
         localStorage.setItem('uid', user.id)
