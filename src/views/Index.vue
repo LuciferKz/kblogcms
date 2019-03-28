@@ -6,9 +6,12 @@
   <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <ContentHeader
-        :paths = "pagePaths"
-      />
+      <section class="content-header">
+        <h1>{{title}}<small>{{desc}}</small></h1>
+        <ol class="breadcrumb">
+          <li v-for="(name, index) in crumbs" :class="{'active': index === crumbs.length - 1}" :key="index">{{ name }}</li>
+        </ol>
+      </section>
       <!-- Main content -->
       <section class="content">
         <router-view></router-view>
@@ -20,14 +23,19 @@
 </template>
 
 <script>
-import ContentHeader from '@/components/adminLte/ContentHeader'
+import SideBar from '@/views/layout/sidebar/index'
+import MainHeader from '@/views/layout/MainHeader'
+import MainFooter from '@/views/layout/MainFooter'
 
 export default {
   name: 'Index',
+  components: { MainHeader, MainFooter, SideBar },
   data () {
     return {
+      crumbs: [],
       skinCls: 'skin-blue',
-      pagePaths: []
+      title: 'KBLOG',
+      desc: 'Content management system'
     }
   },
   created () {
@@ -40,16 +48,15 @@ export default {
       return this.$store.getters.sidebarCls
     }
   },
-  components: { ContentHeader },
   beforeRouteEnter: function (to, from, next) {
     next(vm => {
-      vm.pagePaths = ['Home']
-      vm.pagePaths.push(to.name)
+      vm.crumbs = ['Home']
+      vm.crumbs.push(to.name)
     })
   },
   beforeRouteUpdate: function (to, from, next) {
-    this.pagePaths = ['Home']
-    this.pagePaths.push(to.name)
+    this.crumbs = ['Home']
+    this.crumbs.push(to.name)
     next()
   }
 }

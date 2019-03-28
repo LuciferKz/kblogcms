@@ -21,11 +21,7 @@
       </form>
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-        <TreeMenu
-          v-for = "(model, index) in sidebarMenu"
-          :menuModel = "model"
-          :key = "index"
-        />
+        <tree-menu v-for="item in menu" :key="item.id" :model="item"></tree-menu>
         <li><a href="https://adminlte.io/themes/AdminLTE/documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
       </ul>
     </section>
@@ -33,15 +29,18 @@
 </template>
 
 <script>
-import TreeMenu from '@/components/adminLte/layout/TreeMenu'
+
+import TreeMenu from './tree-menu'
 
 export default {
 
   name: 'SideBar',
 
+  components: { TreeMenu },
+
   data () {
     return {
-      sidebarMenu: [
+      menu: [
         {
           name: 'User',
           icon: 'fa-user',
@@ -111,13 +110,14 @@ export default {
 
   computed: {
     userInfo () {
-      console.log(this.$store.state.auth.userInfo)
       return this.$store.state.auth.userInfo
     }
   },
 
-  components: {
-    TreeMenu
+  methods: {
+    linkTo (path) {
+      if (path) this.$router.push(path)
+    }
   }
 }
 </script>

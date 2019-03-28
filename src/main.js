@@ -7,7 +7,7 @@ import store from './store/index.js'
 import api from './api'
 import tween from 'tween.js'
 import kmodal from 'kmodal'
-import './components'
+import './components/index'
 import './directives/index'
 
 Vue.config.productionTip = false

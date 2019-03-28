@@ -26,7 +26,7 @@
           <td>
             <router-link :to="{name:'UserEdit',params:{uid:user._id}}" class="glyphicon glyphicon-edit" title="编辑"></router-link>
             <a href="javascript:void(0)" class="glyphicon glyphicon-remove" title="删除" @click="remove(user._id)"></a>
-            <!-- <a href="javascript:void(0)" class="glyphicon glyphicon-qrcode" title="个人二维码"></a> --></td>
+            <!-- <a href="javascript:void(0)" class="glyphicon glyphicon-qrcode" title="个人二维码"></a> -->
           </td>
         </tr>
         </tbody>
